@@ -1,2 +1,42 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
+
+@theme {
+	--color-brand: #ff5c00;
+	--color-brand-hover: #ff9e59;
+	--color-brand-active: #ff3d00;
+	--color-link: #00838f;
+	--color-link-hover: #808080;
+	--color-neutral-border: #b4b4b4;
+	--color-neutral-hover: #f4f4f4;
+	--color-ink: #31393c;
+	--font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+	--color-divider: #6b7280;
+}
+
+@layer components {
+	/* Native checkboxes cannot have a custom border width, so the box is drawn by hand */
+	.checkbox-mark {
+		appearance: none;
+		border: 2px solid var(--color-divider);
+		border-radius: 4px;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: 80%;
+	}
+
+	.checkbox-mark:checked {
+		border-color: var(--color-brand);
+		background-color: var(--color-brand);
+		background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2016%2016'%20fill='none'%20stroke='white'%20stroke-width='2.5'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cpath%20d='M3.5%208.5l3%203%206-7'/%3E%3C/svg%3E");
+	}
+}
+
+/* Lock page scroll while any modal <dialog> is open; the gutter keeps the layout from shifting */
+html {
+	scrollbar-gutter: stable;
+}
+
+body:has(dialog[open]) {
+	overflow: hidden;
+}
